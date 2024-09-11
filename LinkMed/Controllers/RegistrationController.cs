@@ -1,4 +1,5 @@
 ﻿using LinkMed.IServices;
+using LinkMed.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace LinkMed.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] IUserRegistrationService model)
+        public IActionResult Register([FromBody] UserRegistration model)
         {
             if(model.Password != model.ConfirmPassword)
             {

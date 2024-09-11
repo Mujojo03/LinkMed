@@ -38,10 +38,10 @@ namespace LinkMed.Controllers
         }
 
 
-        [HttpPut("users/{username}")]
-        public IActionResult UpdateUserPassword(string username, [FromBody]string newPassword)
+        [HttpPut("users/{password}")]
+        public IActionResult UpdateUserPassword(string username, string password, [FromBody]string newPassword)
         {
-            var updated = _authService.UpdateUserPassword(username, newPassword);
+            var updated = _authService.UpdateUserPassword(username, password, newPassword);
 
             if (updated)
             {

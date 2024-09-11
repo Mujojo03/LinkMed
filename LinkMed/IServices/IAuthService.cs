@@ -7,7 +7,7 @@ namespace LinkMed.IServices
         bool ValidateUser(string username, string password, string email);
         //User AuthenticateUser(string username, string password);
         List<User> GetUsers();
-        bool UpdateUserPassword(string username, string newPassword);
+        bool UpdateUserPassword(string username, string password, string newPassword);
         bool DeleteUser(string username);
     }
 }

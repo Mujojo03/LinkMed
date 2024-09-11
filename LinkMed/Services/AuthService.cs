@@ -32,9 +32,9 @@ namespace LinkMed.Services
         }
 
         //for PUT method
-        public bool UpdateUserPassword(string username, string newPassword)
+        public bool UpdateUserPassword(string username, string password, string newPassword)
         {
-            var user = _users.FirstOrDefault(u => u.Username == username);
+            var user = _users.FirstOrDefault(u => u.Password == password);
             if (user != null)
             {
                 user.Password = newPassword;

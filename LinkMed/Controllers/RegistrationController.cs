@@ -20,22 +20,47 @@ namespace LinkMed.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] UserRegistration model)
         {
+            //check if passwords match
             if(model.Password != model.ConfirmPassword)
             {
                 return BadRequest(new { message = "Password do notmatch." });
             }
 
+            //check if username or email aready exists
             if(_userRegistrationService.UserExists(model.Username, model.Email))
             {
                 return Conflict(new { message = "Username or Email already exists." });
             }
 
-            var userCreated = _userRegistrationService.CreateUser(model.Email, model.Username, model.Password);
-            if (userCreated)
+            //check if user is a doctor
+            if (model.IsDoctor)
             {
-                return Ok(new { message = "User Registered Successfully." });
+                //validate that a specialty is provided for doctors
+                if (string.IsNullOrEmpty(model.Specialty))
+                {
+                    return BadRequest(new { message = "Specialty is required for doctor registration." });
+                }
+
+                string department = Department.GetDepartmentBySpecialty(model.Specialty);
+
+                var doctorCreated = _userRegistrationService.CreateDoctor(model.Username, model.Specialty, model.Email, model.Password, department);
+                if (doctorCreated)
+                {
+                    return Ok(new { message = $"Doctor Registered Successfully in the {department} department." });
+                }
+                return BadRequest(new { message = "Failed to Create Doctor." });
             }
-            return BadRequest(new { message = "Failed to Create User." });
+            else
+            {
+                //Regular user registration
+                var userCreated = _userRegistrationService.CreateUser(model.Email, model.Username, model.Password);
+                if (userCreated)
+                {
+                    return Ok(new { message = "User Registered Successfully." });
+                }
+                return BadRequest(new { message = "Failed to Create User." });
+            }
+
         }
     }
 }

@@ -22,6 +22,8 @@ namespace LinkMed.Services
             new Doctor { Username = "DrJane", Email = "drjoy@gmail.com", Password = "123Joy", Specialty = "Pediatrics", Department = "Pediatrics" }
         };
 
+        //a list for appointments
+        private readonly List<Appointment> _appointments = new List<Appointment>();
 
         //check if user/doctor exists
         public bool UserExists(string username, string email)
@@ -62,6 +64,27 @@ namespace LinkMed.Services
         public List<Doctor> GetAllDoctors()
         {
             return _doctors;
+        }
+
+        public bool BookAppointment(string username, DateTime appointmentDate, string facility)
+        {
+            var user = _users.FirstOrDefault(u => u.Username == username);
+            if (user != null)
+            {
+                var appointment = new Appointment
+                {
+                    AppointmentDate = appointmentDate,
+                    Facility = facility,
+                    Username = username,
+                };
+                _appointments.Add(appointment);
+                return true;
+            }
+            return false;
+        }
+        public Appointment GetAppointment(string username)
+        {
+            return _appointments.FirstOrDefault(a => a.Username == username);
         }
     }
 }

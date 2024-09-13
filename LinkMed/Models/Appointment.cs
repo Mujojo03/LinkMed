@@ -2,11 +2,16 @@
 {
     public class Appointment
     {
-        public int Id { get; set; }
-        //public Patient Patient { get; set; }
-        
-        public DateTime Date { get; set; }
-        public TimeSpan Time { get; set; }
+        public string Username { get; set; }  // The user booking the appointment
+        public DateTime AppointmentDate { get; set; }
+        public string Facility { get; set; }
+    }
+
+    public class AppointmentRequest
+    {
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public DateTime AppointmentDate { get; set; }
         public string Facility { get; set; }
     }
 }

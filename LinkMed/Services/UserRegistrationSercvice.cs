@@ -19,7 +19,7 @@ namespace LinkMed.Services
         {
             new Doctor { Username = "DrSmith", Email = "drsmith@gmail.com", Password = "123Smith", Specialty = "Cardiology", Department = "Cardiology" },
             new Doctor { Username = "DrJack", Email = "drjack@gmail.com", Password = "123Jack", Specialty = "Neurology", Department = "Neurology" },
-            new Doctor { Username = "DrJane", Email = "drjoy@gmail.com", Password = "123Joy", Specialty = "Pediatrics", Department = "Pediatrics" }
+            new Doctor { Username = "DrJoy", Email = "drjoy@gmail.com", Password = "123Joy", Specialty = "Pediatrics", Department = "Pediatrics" }
         };
 
         //a list for appointments
@@ -85,6 +85,21 @@ namespace LinkMed.Services
         public Appointment GetAppointment(string username)
         {
             return _appointments.FirstOrDefault(a => a.Username == username);
+        }
+
+        //to track the currently logged-in user
+        private User _currentLoggedInUser = null;
+
+        //check if user is logged in
+        public bool IsUserLoggedIn()
+        {
+            return _currentLoggedInUser != null;
+        }
+
+        //return the username of the currently logged in user
+        public string GetLoggedInUsername()
+        {
+            return _currentLoggedInUser?.Username;
         }
     }
 }

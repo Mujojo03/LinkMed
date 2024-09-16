@@ -23,7 +23,7 @@ namespace LinkMed.Controllers
             //check if passwords match
             if(model.Password != model.ConfirmPassword)
             {
-                return BadRequest(new { message = "Password do notmatch." });
+                return BadRequest(new { message = "Password do not match." });
             }
 
             //check if username or email aready exists

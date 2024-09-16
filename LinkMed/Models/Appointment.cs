@@ -6,12 +6,4 @@
         public DateTime AppointmentDate { get; set; }
         public string Facility { get; set; }
     }
-
-    public class AppointmentRequest
-    {
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public DateTime AppointmentDate { get; set; }
-        public string Facility { get; set; }
-    }
 }

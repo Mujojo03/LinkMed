@@ -8,7 +8,7 @@
         public string ConfirmPassword { get; set; }
 
         //applicable for doctors.
-        public bool IsDoctor { get; set; }
+        public bool IsDoctor { get; set; } //to differentiate a user and a doctor
         public string Specialty { get; set; }
         public string Department { get; set; }
     }

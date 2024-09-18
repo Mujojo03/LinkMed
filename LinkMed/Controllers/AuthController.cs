@@ -39,9 +39,9 @@ namespace LinkMed.Controllers
 
 
         [HttpPut("users/{password}")]
-        public IActionResult UpdateUserPassword(string username, string password, [FromBody]string newPassword)
+        public IActionResult UpdateUserPassword(string username, string password, string newPassword, string confirmPassword)
         {
-            var updated = _authService.UpdateUserPassword(username, password, newPassword);
+            var updated = _authService.UpdateUserPassword(username, password, newPassword, confirmPassword);
 
             if (updated)
             {
@@ -51,10 +51,11 @@ namespace LinkMed.Controllers
         }
 
 
-        [HttpDelete("users/{username}")]
-        public IActionResult DeleteUser(string username)
+        [HttpDelete("users/{username, password}")]
+        public IActionResult DeleteUser(string username, string password)
         {
-            var deleted = _authService.DeleteUser(username);
+            var deleted = _authService.DeleteUser(username, password);
+            
 
             if (deleted)
             {

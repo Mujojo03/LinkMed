@@ -32,7 +32,7 @@ namespace LinkMed.Services
         }
 
         //for PUT method
-        public bool UpdateUserPassword(string username, string password, string newPassword)
+        public bool UpdateUserPassword(string username, string password, string newPassword, string confirmPassword)
         {
             var user = _users.FirstOrDefault(u => u.Password == password);
             if (user != null)
@@ -44,7 +44,7 @@ namespace LinkMed.Services
         }
 
         //for DELETE method
-        public bool DeleteUser(string username)
+        public bool DeleteUser(string username, string password)
         {
             var user = _users.FirstOrDefault(u => u.Username == username);
             if (user != null)

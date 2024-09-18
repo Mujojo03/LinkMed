@@ -25,7 +25,7 @@ namespace LinkMed.Services
         {
             foreach (var user in _users)
             {
-                Id = _nextId++;
+                user.Id = _nextId++;
             }
             //User.Id = _nextId++;
             return _users;
